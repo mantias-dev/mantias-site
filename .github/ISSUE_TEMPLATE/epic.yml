@@ -1,0 +1,59 @@
+name: Epic
+description: A workstream with sub-issues — a container, never work in itself
+labels: ["type:task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        An epic is an issue with **sub-issues** — nestable and cross-repo, progress derived
+        from the graph (MANUAL §3). Wire them with `frontier epic add N --to <this>`, and do
+        **not** keep a checklist of them here: the graph holds that and `frontier` prints it,
+        so a hand-written copy only drifts.
+
+        `frontier epic show <this>` reads it back — these sections beside the progress the
+        graph derives. If it prints `0 sub-issues`, what you filed is an epic in prose only.
+
+        A container is never dispatched as ready while sub-issues are open, and it closes when
+        the graph says every one of them is closed.
+  - type: textarea
+    id: destination
+    attributes:
+      label: Destination
+      description: One sentence — what is true when this closes. If you cannot write it, the epic is not yet an epic.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why this workstream exists. The state of the world that made it necessary.
+    validations:
+      required: true
+  - type: textarea
+    id: decided
+    attributes:
+      label: Decisions so far
+      description: What is settled, each pointing at its home (`docs/adr/`, a standing doc). Keeps the next reader from re-litigating. Correct in place — never append a dated note.
+    validations:
+      required: false
+  - type: textarea
+    id: unspecified
+    attributes:
+      label: Not yet specified
+      description: The fog. What is still unknown or undecided — an epic that hides this is one nobody can judge the first step of. As an item sharpens, it becomes a `needs-decision` sub-issue (docs/adr/0019).
+    validations:
+      required: true
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: What this deliberately does not cover, and why — so it is not re-proposed as an oversight.
+    validations:
+      required: false
+  - type: textarea
+    id: next-action
+    attributes:
+      label: Next action
+      description: The next concrete step (MANUAL §2). For a container this is usually tracking sub-issues to closure. Edit it later with `frontier set-action`, never by hand.
+    validations:
+      required: true
