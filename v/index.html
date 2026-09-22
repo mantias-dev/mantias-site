@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'sha256-qaWipIee/IRAp9BEK267mZz+lrnfoMO/xZmXtQ6Xp0w='; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#f4f5f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#242c33" media="(prefers-color-scheme: dark)">
+<title>Contact card</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" href="/v/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/v/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Fonts: self-hosted latin subsets (Fontsource), per design-system decision 0002. */
+@font-face{font-family:'Instrument Sans Variable';font-style:normal;font-display:swap;font-weight:400 700;src:url(/v/fonts/instrument-sans-latin-wght-normal.woff2) format('woff2-variations')}
+@font-face{font-family:'Inter Variable';font-style:normal;font-display:swap;font-weight:100 900;src:url(/v/fonts/inter-latin-wght-normal.woff2) format('woff2-variations')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-display:swap;font-weight:400;src:url(/v/fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}
+/* Tokens: values mirror @mantias-dev/tokens semantic.css (this page is static and cannot import the private package). */
+:root{color-scheme:light;
+--mantias-font-display:'Instrument Sans Variable',ui-sans-serif,system-ui,sans-serif;
+--mantias-font-body:'Inter Variable',ui-sans-serif,system-ui,sans-serif;
+--mantias-font-mono:'IBM Plex Mono',ui-monospace,'SF Mono',monospace;
+--mantias-color-surface-page:#f4f5f2;--mantias-color-surface-card:#fff;--mantias-color-surface-ink:#04203e;
+--mantias-color-ink:#04203e;--mantias-color-ink-soft:#46586b;--mantias-color-ink-faint:#8593a1;--mantias-color-on-ink:#f4f5f2;
+--mantias-color-accent:#1f9d94;--mantias-color-hairline:#dbe0e4;
+--mantias-shadow-figure:0 24px 60px -32px rgba(4,32,62,.35);
+--mantias-button-bg:#04203e;--mantias-button-fg:#fff;--mantias-focus-ring:#1f9d94;--mantias-selection-bg:#04203e;--mantias-selection-fg:#f4f5f2;
+--mantias-ease-out:cubic-bezier(.22,1,.36,1);--mantias-duration-base:200ms}
+[data-theme='dark']{color-scheme:dark;
+--mantias-color-surface-page:#242c33;--mantias-color-surface-card:#1b2329;--mantias-color-surface-ink:#e9edf0;
+--mantias-color-ink:#e9edf0;--mantias-color-ink-soft:#b2bbc2;--mantias-color-ink-faint:#848e97;--mantias-color-on-ink:#242c33;
+--mantias-color-accent:#58c8be;--mantias-color-hairline:#3a444c;
+--mantias-button-bg:#e9edf0;--mantias-button-fg:#1b2329;--mantias-focus-ring:#58c8be;--mantias-selection-bg:#e9edf0;--mantias-selection-fg:#1b2329}
+@media (prefers-color-scheme:dark){:root:not([data-theme='light']){color-scheme:dark;
+--mantias-color-surface-page:#242c33;--mantias-color-surface-card:#1b2329;--mantias-color-surface-ink:#e9edf0;
+--mantias-color-ink:#e9edf0;--mantias-color-ink-soft:#b2bbc2;--mantias-color-ink-faint:#848e97;--mantias-color-on-ink:#242c33;
+--mantias-color-accent:#58c8be;--mantias-color-hairline:#3a444c;
+--mantias-button-bg:#e9edf0;--mantias-button-fg:#1b2329;--mantias-focus-ring:#58c8be;--mantias-selection-bg:#e9edf0;--mantias-selection-fg:#1b2329}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--mantias-color-surface-page);color:var(--mantias-color-ink)}
+body{font-family:var(--mantias-font-body);font-size:.95rem;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(24px + env(safe-area-inset-top)) calc(24px + env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) calc(24px + env(safe-area-inset-left))}
+::selection{background:var(--mantias-selection-bg);color:var(--mantias-selection-fg)}
+:focus-visible{outline:2px solid var(--mantias-focus-ring);outline-offset:2px}
+[hidden]{display:none!important}
+main{width:100%;max-width:420px}
+.brand{display:flex;align-items:center;margin:0 0 20px}
+.wordmark{display:inline-flex;align-items:center;color:var(--mantias-color-ink);padding:6px 0}
+.wordmark svg{height:22px;width:auto;fill:currentColor;display:block}
+.card{background:var(--mantias-color-surface-card);border:1px solid var(--mantias-color-hairline);border-radius:0;box-shadow:var(--mantias-shadow-figure);padding:28px 24px}
+.label{font-family:var(--mantias-font-mono);font-size:.75rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mantias-color-ink-faint);margin:0 0 14px}
+h1{font-family:var(--mantias-font-display);font-size:1.75rem;line-height:1.15;font-weight:600;letter-spacing:-.025em;margin:0;overflow-wrap:anywhere}
+.role{margin:6px 0 0;font-size:1.0625rem;line-height:1.35;color:var(--mantias-color-ink-soft);overflow-wrap:anywhere}
+.rows{display:grid;gap:1px;background:var(--mantias-color-hairline);border-top:1px solid var(--mantias-color-hairline);border-bottom:1px solid var(--mantias-color-hairline);margin:22px 0 0;padding:0}
+.rows:empty{display:none}
+.row{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:baseline;background:var(--mantias-color-surface-card);padding:11px 0;margin:0}
+.row dt{font-family:var(--mantias-font-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mantias-color-ink-faint)}
+.row dd{margin:0;font-size:1.0625rem;line-height:1.35;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;white-space:pre-line}
+.row a{color:var(--mantias-color-ink);text-decoration:none;transition:color var(--mantias-duration-base) var(--mantias-ease-out)}
+.row a:hover,.row a:active{color:var(--mantias-color-accent)}
+.add{display:inline-flex;width:100%;align-items:center;justify-content:center;gap:8px;margin:24px 0 0;padding:.875rem 1.5rem;min-height:48px;border:0;border-radius:0;background:var(--mantias-button-bg);color:var(--mantias-button-fg);font-family:var(--mantias-font-body);font-size:1rem;font-weight:600;line-height:1.2;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:transform var(--mantias-duration-base) var(--mantias-ease-out)}
+.add:hover{transform:translateY(-2px)}
+.add .glyph{transition:transform var(--mantias-duration-base) var(--mantias-ease-out)}
+.add:hover .glyph{transform:translateX(2px)}
+.status{margin:14px 0 0;font-size:.8125rem;line-height:1.5;color:var(--mantias-color-ink-soft);text-align:center;min-height:1.5em}
+.fallback{display:block;margin:6px 0 0;font-size:.8125rem;color:var(--mantias-color-ink-soft);text-align:center;text-decoration:underline;text-underline-offset:2px;transition:color var(--mantias-duration-base) var(--mantias-ease-out)}
+.fallback:hover{color:var(--mantias-color-ink)}
+.empty{margin:0;font-size:1.0625rem;color:var(--mantias-color-ink-soft)}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<main>
+  <header class="brand">
+    <a class="wordmark" href="https://mantias.ch/" aria-label="Mantias — home">
+      <svg viewBox="0 0 296.51 73.76" aria-hidden="true"><path d="M55.92,6.46v51.08h-10.25V24.32l-13.68,33.23h-7.76L10.47,24.32v33.23H.23V6.46h11.64l16.25,37.98L44.36,6.46h11.56Z"/><path d="M65.84,26.22c1.63-3.17,3.85-5.61,6.66-7.32,2.8-1.71,5.94-2.56,9.4-2.56,3.02,0,5.67.61,7.94,1.83,2.27,1.22,4.09,2.76,5.45,4.61v-5.78h10.32v40.54h-10.32v-5.93c-1.32,1.9-3.14,3.48-5.45,4.72-2.32,1.24-4.99,1.87-8.01,1.87-3.42,0-6.53-.88-9.33-2.63-2.81-1.76-5.03-4.23-6.66-7.43-1.64-3.19-2.45-6.87-2.45-11.01s.82-7.73,2.45-10.9ZM93.83,30.87c-.98-1.78-2.29-3.15-3.95-4.1-1.66-.95-3.44-1.43-5.34-1.43s-3.66.46-5.27,1.39c-1.61.93-2.92,2.28-3.92,4.06-1,1.78-1.5,3.89-1.5,6.33s.5,4.57,1.5,6.4c1,1.83,2.32,3.23,3.95,4.21,1.63.98,3.38,1.46,5.23,1.46s3.68-.48,5.34-1.43c1.66-.95,2.98-2.32,3.95-4.1.98-1.78,1.46-3.92,1.46-6.4s-.49-4.62-1.46-6.4Z"/><path d="M149.81,20.99c2.98,3.05,4.46,7.31,4.46,12.77v23.78h-10.25v-22.39c0-3.22-.81-5.7-2.42-7.43-1.61-1.73-3.81-2.6-6.59-2.6s-5.06.87-6.7,2.6c-1.64,1.73-2.45,4.21-2.45,7.43v22.39h-10.25V17h10.25v5.05c1.37-1.76,3.11-3.13,5.23-4.13,2.12-1,4.45-1.5,6.99-1.5,4.83,0,8.73,1.53,11.71,4.57Z"/><path d="M175.94,25.42v19.61c0,1.37.33,2.35.99,2.96.66.61,1.77.92,3.33.92h4.76v8.64h-6.44c-8.64,0-12.95-4.2-12.95-12.59v-19.54h-4.83v-8.42h4.83V6.97h10.32v10.03h9.08v8.42h-9.08Z"/><path d="M193.1,10.45c-1.2-1.15-1.79-2.57-1.79-4.28s.6-3.13,1.79-4.28c1.19-1.15,2.7-1.72,4.5-1.72s3.3.57,4.5,1.72c1.2,1.15,1.79,2.57,1.79,4.28s-.6,3.14-1.79,4.28c-1.2,1.15-2.7,1.72-4.5,1.72s-3.31-.57-4.5-1.72ZM202.65,17v40.54h-10.25V17h10.25Z"/><path d="M212.57,26.22c1.63-3.17,3.85-5.61,6.66-7.32,2.8-1.71,5.94-2.56,9.4-2.56,3.02,0,5.67.61,7.94,1.83,2.27,1.22,4.09,2.76,5.45,4.61v-5.78h10.32v40.54h-10.32v-5.93c-1.32,1.9-3.14,3.48-5.45,4.72-2.32,1.24-4.99,1.87-8.01,1.87-3.42,0-6.53-.88-9.33-2.63-2.81-1.76-5.03-4.23-6.66-7.43-1.64-3.19-2.45-6.87-2.45-11.01s.82-7.73,2.45-10.9ZM240.56,30.87c-.98-1.78-2.29-3.15-3.95-4.1-1.66-.95-3.44-1.43-5.34-1.43s-3.66.46-5.27,1.39c-1.61.93-2.92,2.28-3.92,4.06-1,1.78-1.5,3.89-1.5,6.33s.5,4.57,1.5,6.4c1,1.83,2.32,3.23,3.95,4.21,1.63.98,3.38,1.46,5.23,1.46s3.68-.48,5.34-1.43c1.66-.95,2.98-2.32,3.95-4.1.98-1.78,1.46-3.92,1.46-6.4s-.49-4.62-1.46-6.4Z"/><path d="M290.29,73.76h-13.13l6.74-6.76c2.66-2.99,3.26-5.11,3.26-5.86v-.14c0-1.8-1.29-3.8-4.94-3.8l-7.77.05c-7.88-.21-14.58-6.77-14.59-15.48l-.02-12.35c-.01-7.31,5.92-13.25,13.23-13.24l23.29.03-9.45,9.47-12.32.02c-2.71,0-5.91,3.21-5.9,5.92l.03,9.54c.01,3.72,2.69,6.54,6.11,6.57l9.92.08c6.37.05,11.28,5.48,11.73,12.36.27,4.18-.94,7.55-3.35,10.38l-2.83,3.21Z"/></svg>
+    </a>
+  </header>
+  <section id="card" class="card" hidden>
+    <p class="label">Contact card</p>
+    <h1 id="name"></h1>
+    <p id="role" class="role" hidden></p>
+    <dl id="details" class="rows"></dl>
+    <button id="add" class="add" type="button">Add to contacts <span class="glyph" aria-hidden="true">→</span></button>
+    <p id="status" class="status" aria-live="polite"></p>
+    <a id="fallback" class="fallback" hidden>Download the .vcf file</a>
+  </section>
+  <section id="empty" class="card" hidden>
+    <p class="label">Contact card</p>
+    <p class="empty">No contact card found.</p>
+  </section>
+  <noscript><section class="card"><p class="empty">This contact card needs JavaScript.</p></section></noscript>
+</main>
+<script src="/v/v.js"></script>
+</body>
+</html>
